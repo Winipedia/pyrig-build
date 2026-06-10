@@ -1,0 +1,89 @@
+[project]
+name = "pyrig-build"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pyrig>=12.12.0",
+]
+license = "MIT"
+license-files = [
+    "LICENSE",
+]
+
+[[project.authors]]
+name = "Winipedia"
+
+[[project.maintainers]]
+name = "Winipedia"
+
+[project.urls]
+Homepage = "https://github.com/Winipedia/pyrig-build"
+Documentation = "https://Winipedia.github.io/pyrig-build"
+Source = "https://github.com/Winipedia/pyrig-build"
+Issues = "https://github.com/Winipedia/pyrig-build/issues"
+Changelog = "https://github.com/Winipedia/pyrig-build/releases"
+
+[project.scripts]
+pyrig-build = "pyrig.rig.cli.main:main"
+
+[dependency-groups]
+dev = [
+    "bandit>=1.9.4",
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.7.6",
+    "mkdocs-mermaid2-plugin>=1.2.3",
+    "mkdocstrings[python]>=1.0.4",
+    "pip-audit>=2.10.0",
+    "prek>=0.4.4",
+    "pygithub>=2.9.1",
+    "pyrig-dev>=2.8.0",
+    "pytest>=9.0.3",
+    "pytest-cov>=7.1.0",
+    "pytest-mock>=3.15.1",
+    "ruff>=0.15.16",
+    "rumdl>=0.2.11",
+    "ty>=0.0.47",
+]
+
+[build-system]
+requires = [
+    "uv_build",
+]
+build-backend = "uv_build"
+
+[tool.ruff.lint]
+select = [
+    "ALL",
+]
+ignore = [
+    "COM812",
+    "ANN401",
+]
+fixable = [
+    "ALL",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**/*.py" = [
+    "S101",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ty.terminal]
+error-on-warning = true
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+addopts = "--cov=pyrig_build --cov-branch --cov-report=term-missing --cov-fail-under=90"
+
+[tool.bandit.assert_used]
+skips = [
+    "*/tests/*.py",
+    "*/test_*/*.py",
+]
